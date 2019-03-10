@@ -10,6 +10,8 @@
     "hubspot",
     "yii2"
   ],
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "require": {
     "flipboxdigital/oauth2-hubspot": "^1.0",
     "flipboxfactory/patron": "^2.0",
@@ -45,6 +47,10 @@
     "developerUrl": "https://www.flipboxdigital.com",
     "changelogUrl": "https://raw.githubusercontent.com/flipboxfactory/patron-hubspot/master/CHANGELOG.md",
     "documentationUrl": "https://github.com/flipboxfactory/patron-hubspot/blob/master/README.md",
-    "schemaVersion": "1.1.0"
+    "schemaVersion": "1.0.0",
+    "branch-alias": {
+      "dev-master": "1.0.x-dev",
+      "dev-develop": "1.0.x-dev"
+    }
   }
 }
