@@ -10,10 +10,9 @@ namespace flipbox\patron\hubspot\connections;
 
 use Craft;
 use craft\helpers\ArrayHelper;
-use flipbox\craft\hubspot\connections\SavableConnectionInterface;
+use flipbox\craft\hubspot\connections\SavableIntegrationConnectionInterface;
 use flipbox\craft\hubspot\HubSpot as HubSpotPlugin;
 use flipbox\craft\integration\connections\AbstractSaveableConnection;
-use Flipbox\HubSpot\Connections\IntegrationConnectionInterface;
 use Flipbox\OAuth2\Client\Provider\HubSpot;
 use Flipbox\OAuth2\Client\Provider\HubSpotResourceOwner;
 use flipbox\patron\records\Provider;
@@ -22,7 +21,7 @@ use flipbox\patron\records\Provider;
  * @author Flipbox Factory <hello@flipboxfactory.com>
  * @since 1.0.0
  */
-class PatronConnection extends AbstractSaveableConnection implements IntegrationConnectionInterface, SavableConnectionInterface
+class PatronConnection extends AbstractSaveableConnection implements SavableIntegrationConnectionInterface
 {
     use AccessTokenAuthorizationTrait;
 
@@ -210,5 +209,4 @@ class PatronConnection extends AbstractSaveableConnection implements Integration
 
         return $provider;
     }
-
 }
