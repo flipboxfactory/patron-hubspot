@@ -1,0 +1,45 @@
+{% import "_includes/forms" as forms %}
+
+{% set providerOptions = {'': '-- Select Patron Provider --'} %}
+{% for provider in providers %}
+    {% set providerOptions = providerOptions|merge([{
+        label: provider.handle,
+        value: provider.id
+    }]) %}
+{% endfor %}
+
+{{ forms.selectField({
+    label: "Handle"|t('app'),
+    instructions: "The <a href='"~ cpUrl('/patron/providers') ~"'>Patron provider</a> handle"|t('patron-hubspot'),
+    id: 'provider',
+    name: 'provider',
+    options: providerOptions,
+    value: connection.provider ?? null,
+    errors: connection.getErrors('provider') ?? []
+}) }}
+
+<div style="border-radius: 2px; background: #fffcf5; color: #9a7a3b; border: 1px solid #fff3dc; padding:16px;">
+    <p>An OAuth connection to requires a HubSpot App.  <a href="https://developers.hubspot.com/docs/faq/how-do-i-create-an-app-in-hubspot">Learn how to create an app in HubSpot</a></p>
+</div>
+
+{{ forms.textField({
+    label: "Hub Id"|t('patron-hubspot'),
+    instructions: "The HubSpot Hub Id. <a href='https://knowledge.hubspot.com/articles/kcs_article/account/access-your-hub-id-and-other-hubspot-accounts'>How to find your Hub Id</a>"|t('patron-hubspot'),
+    id: 'hubId',
+    class: 'code',
+    name: 'hubId',
+    value: connection.hubId ?? null,
+    errors: connection.getErrors('hubId') ?? [],
+    required: true
+}) }}
+
+{{ forms.textField({
+    label: "App Id"|t('patron-hubspot'),
+    instructions: "The HubSpot App Id. <a href='https://developers.hubspot.com/docs/faq/how-do-i-find-the-app-id'>How to find your App Id</a>"|t('patron-hubspot'),
+    id: 'appId',
+    class: 'code',
+    name: 'appId',
+    value: connection.appId ?? null,
+    errors: connection.getErrors('appId') ?? [],
+    required: true
+}) }}
