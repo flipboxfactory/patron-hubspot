@@ -10,8 +10,6 @@
     "hubspot",
     "yii2"
   ],
-  "minimum-stability": "dev",
-  "prefer-stable": true,
   "require": {
     "flipboxdigital/oauth2-hubspot": "^1.0",
     "flipboxfactory/patron": "^2.0",
