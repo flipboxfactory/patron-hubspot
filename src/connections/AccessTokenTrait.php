@@ -9,6 +9,7 @@
 namespace flipbox\patron\hubspot\connections;
 
 use flipbox\patron\Patron;
+use League\OAuth2\Client\Token\AccessToken;
 use League\OAuth2\Client\Token\AccessTokenInterface;
 
 /**
@@ -20,12 +21,12 @@ trait AccessTokenTrait
     use ProviderTrait;
 
     /**
-     * @var AccessTokenInterface|null
+     * @var AccessTokenInterface|AccessToken|null
      */
     private $accessToken;
 
     /**
-     * @param AccessTokenInterface $accessToken
+     * @param AccessTokenInterface|AccessToken $accessToken
      */
     public function setAccessToken(AccessTokenInterface $accessToken)
     {
@@ -33,7 +34,7 @@ trait AccessTokenTrait
     }
 
     /**
-     * @return AccessTokenInterface
+     * @return AccessTokenInterface|AccessToken
      * @throws \yii\base\InvalidConfigException
      */
     public function getAccessToken(): AccessTokenInterface
