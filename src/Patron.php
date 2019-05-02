@@ -13,7 +13,7 @@ use flipbox\craft\ember\modules\LoggerTrait;
 use flipbox\craft\hubspot\cp\Cp as HubSpotCp;
 use flipbox\craft\hubspot\events\RegisterConnectionsEvent;
 use flipbox\patron\cp\Cp as PatronCp;
-use flipbox\patron\events\RegisterProviderIcons;
+use flipbox\patron\events\RegisterProviderInfo;
 use flipbox\patron\events\RegisterProviders;
 use flipbox\patron\events\RegisterProviderSettings;
 use flipbox\patron\hubspot\connections\PatronConnection;
@@ -54,7 +54,7 @@ class Patron extends Plugin
         );
 
         // OAuth2 Provider Settings
-        RegisterProviderSettings::on(
+        Event::on(
             HubSpot::class,
             RegisterProviderSettings::REGISTER_SETTINGS,
             function (RegisterProviderSettings $event) {
@@ -65,9 +65,12 @@ class Patron extends Plugin
         // OAuth2 Provider Icon
         Event::on(
             PatronCp::class,
-            RegisterProviderIcons::REGISTER_ICON,
-            function (RegisterProviderIcons $event) {
-                $event->icons[HubSpot::class] = '@vendor/flipboxfactory/patron-hubspot/icons/hubspot.svg';
+            RegisterProviderInfo::REGISTER_INFO,
+            function (RegisterProviderInfo $event) {
+                $event->info[HubSpot::class] = [
+                    'name' => 'HubSpot',
+                    'icon' => '@vendor/flipboxfactory/patron-hubspot/icons/hubspot.svg'
+                ];
             }
         );
 
