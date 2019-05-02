@@ -89,7 +89,6 @@ class PatronConnection extends AbstractSaveableConnection implements SavableInte
         if (null !== ($provider = ArrayHelper::getValue($changedAttributes, 'provider'))) {
             $condition = [
                 (is_numeric($provider) ? 'id' : 'handle') => $provider,
-                'environment' => null,
                 'enabled' => null
             ];
 
@@ -113,7 +112,6 @@ class PatronConnection extends AbstractSaveableConnection implements SavableInte
     {
         $providers = Provider::find()
             ->class(HubSpot::class)
-            ->environment(null)
             ->enabled(null);
 
         return Craft::$app->view->renderTemplate(
@@ -194,7 +192,6 @@ class PatronConnection extends AbstractSaveableConnection implements SavableInte
             ];
 
             if ($restricted !== true) {
-                $condition['environment'] = null;
                 $condition['enabled'] = null;
             }
 
